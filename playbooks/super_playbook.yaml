@@ -1,0 +1,30 @@
+---
+- hosts: ubuntu01
+
+  remote_user: root
+
+  vars:
+        variable1: Hola amigo!!
+        variable2: 22
+        variable3: 
+            subalor1: 1
+            subvalor2: 2
+  
+  tasks:
+  
+   - name: Actualizar referencias de librerias y dependencias
+     debug: 
+        msg: "{{ variable1 }}, voy a comenzar una terea"
+   - name: Mi cuarta tarea
+     debug:
+        msg: "Valores del diccionario {{variable3.subvalor2 }}"
+   - name: Mi tarea de facts 
+     debug:
+       #msg: "{{ansible_facts}}"
+        var: ansible_facts
+        
+   - name: Mi tarea condicional 
+     debug:
+        msg: "He entrado jeje"
+     when: 
+        - ansible_facts.distribution == 'Ubuntu'
